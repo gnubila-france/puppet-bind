@@ -366,7 +366,7 @@ class bind (
   }
 
   # The whole bind configuration directory can be recursively overriden
-  if $bind::source_dir {
+  if $bind::source_dir and $bind::source_dir != '' {
     file { 'bind.dir':
       ensure  => directory,
       path    => $bind::config_dir,
@@ -382,7 +382,7 @@ class bind (
 
 
   ### Include custom class if $my_class is set
-  if $bind::my_class {
+  if $bind::my_class and $bind::my_class != '' {
     include $bind::my_class
   }
 
