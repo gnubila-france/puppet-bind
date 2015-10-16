@@ -3,9 +3,9 @@ zone "<%= @zone_name %>" {
 <% if @zone_type == 'slave' or @zone_type == 'master' or @zone_type == 'hint' -%>
   file "<%= scope.lookupvar("bind::data_dir") %>/<%= @zone_config_file %>";
 <% end -%>
-<% if @zone_type == 'master' && @zone_slaves != [] -%>
+<% if @zone_type == 'master' && @array_zone_slaves != [] -%>
   allow-transfer {
-<% @zone_slaves.each do |slave|-%>
+<% @array_zone_slaves.each do |slave|-%>
     <%= slave %>;
 <% end -%>
   };

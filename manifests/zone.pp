@@ -146,6 +146,14 @@ define bind::zone(
     $real_zone_contact = $zone_contact
   }
 
+  $array_zone_slaves = is_array($zone_slaves) ? {
+    false     => $zone_slaves ? {
+      ''      => [],
+      default => [$zone_slaves],
+    },
+    default   => $zone_slaves,
+  }
+
   include bind
 
   $zone_config_file = "db.${zone_name}.conf"
