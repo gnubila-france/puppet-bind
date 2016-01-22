@@ -106,7 +106,7 @@
 #
 # Released under the terms of Apache2 licence.
 #
-define bind::zone(
+define bind::zone (
   $zone_serial    = '',
   $zone_name      = $name,
   $zone_type      = 'master',
@@ -192,7 +192,7 @@ define bind::zone(
       }
     }
   } else {
-    file{"zone-${zone_name}":
+    file { "zone-${zone_name}":
       ensure => absent,
       path   => "${bind::data_dir}/${zone_config_file}",
     }
