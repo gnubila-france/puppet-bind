@@ -81,7 +81,8 @@ define bind::record (
     @concat::fragment { "bind-zone-${zone}-${order}-${name}":
       tag     => "bind-zone-${export_tag}",
       content => template($template),
-      order   => $order
+      order   => $order,
+      target  => undef,
     }
   }
 
