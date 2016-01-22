@@ -76,13 +76,16 @@ define bind::record (
   $ttl             = '',
   $order           = '10'
   ) {
+  include ::bind
+
+  $zone_config_file = "db.${zone}.conf"
 
   if $absent == false {
     @@concat::fragment { "bind-zone-${zone}-${order}-${name}":
       tag     => "bind-zone-${export_tag}",
       content => template($template),
       order   => $order,
-      target  => undef,
+      target  => "${bind::data_dir}/${zone_config_file}",
     }
   }
 
