@@ -177,14 +177,14 @@ define bind::zone (
     concat::fragment {"bind-include-zone-${zone_name}":
       target  => $bind::config_file,
       content => template( 'bind/named.conf-zone.erb' ),
-      order   => 50,
+      order   => '50',
     }
 
     if $zone_type== 'master' {
       concat::fragment{"bind-zone-${zone_name}-header":
         target  => "${bind::data_dir}/${zone_config_file}",
         content => template($template),
-        order   => 01,
+        order   => '01',
       }
     }
   } else {
