@@ -342,12 +342,12 @@ class bind (
   }
 
   service { 'bind':
-    ensure     => $bind::manage_service_ensure,
-    name       => $bind::service,
-    enable     => $bind::manage_service_enable,
-    hasstatus  => $bind::service_status,
-    pattern    => $bind::process,
-    require    => Package['bind'],
+    ensure    => $bind::manage_service_ensure,
+    name      => $bind::service,
+    enable    => $bind::manage_service_enable,
+    hasstatus => $bind::service_status,
+    pattern   => $bind::process,
+    require   => Package['bind'],
   }
 
   if $bind::absent == false {
@@ -380,12 +380,10 @@ class bind (
     }
   }
 
-
   ### Include custom class if $my_class is set
   if $bind::my_class and $bind::my_class != '' {
     include $bind::my_class
   }
-
 
   ### Provide puppi data, if enabled ( puppi => true )
   if $bind::bool_puppi == true {
@@ -396,7 +394,6 @@ class bind (
       helper    => $bind::puppi_helper,
     }
   }
-
 
   ### Service monitoring, if enabled ( monitor => true )
   if $bind::bool_monitor == true {
@@ -420,7 +417,6 @@ class bind (
     }
   }
 
-
   ### Firewall management, if enabled ( firewall => true )
   if $bind::bool_firewall == true {
     firewall { "bind_${bind::protocol}_${bind::port}":
@@ -435,7 +431,6 @@ class bind (
     }
   }
 
-
   ### Debugging, if enabled ( debug => true )
   if $bind::bool_debug == true {
     file { 'debug_bind':
@@ -447,5 +442,4 @@ class bind (
       content => inline_template('<%= scope.to_hash.reject { |k,v| k.to_s =~ /(uptime.*|path|timestamp|free|.*password.*|.*psk.*|.*key)/ }.to_yaml %>'),
     }
   }
-
 }
