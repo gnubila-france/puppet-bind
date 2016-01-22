@@ -154,7 +154,7 @@ define bind::zone(
     default   => $zone_slaves,
   }
 
-  include bind
+  include ::bind
 
   $zone_config_file = "db.${zone_name}.conf"
 
