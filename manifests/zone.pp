@@ -171,10 +171,6 @@ define bind::zone (
         group  => $bind::config_file_group,
         notify => $bind::manage_service_autorestart,
       }
-      Concat::Fragment <| tag == "bind-zone-${real_export_tag}" |> {
-        target => "${bind::data_dir}/${zone_config_file}",
-        order  => 50,
-      }
     }
 
     # Register this subnet file into main configuration

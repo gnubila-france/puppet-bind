@@ -81,7 +81,7 @@ define bind::record (
   $zone_config_file = "db.${zone}.conf"
 
   if $absent == false {
-    @@concat::fragment { "bind-zone-${zone}-${order}-${name}":
+    concat::fragment { "bind-zone-${zone}-${order}-${name}":
       tag     => "bind-zone-${export_tag}",
       content => template($template),
       order   => $order,
