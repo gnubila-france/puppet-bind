@@ -36,7 +36,7 @@ define bind::ns (
   $absent       = false,
   $template     = 'bind/record.erb',
   $ttl          = '',
-  $order        = '0'
+  $order        = '10'
   ) {
 
   bind::record { "NS-${name}.${zone}":
